@@ -13,6 +13,7 @@ public class GameStateManager {
     public static final int LOBBY = 0;
     public static final int OPTIONS = 1;
     public static final int HIGHSCORE = 2;
+    public static final int PLAY = 3;
 
     public static FontF fontF;
 
@@ -74,6 +75,10 @@ public class GameStateManager {
             case HIGHSCORE -> {
                 System.out.println("LOADING-GameState: '" + num + "'");
                 gs[num] = new Highscore(this);
+            }
+            case PLAY -> {
+                System.out.println("LOADING-GameState: '" + num + "'");
+                gs[num] = new Play(this);
             }
             default -> System.out.println("ERROR-GameStateManager: There is no GameState with this num: '" + num + "'");
         }

@@ -37,7 +37,7 @@ public class Lobby extends GameState{
         }
 
         if (button[0].getClicked()) {
-            // Start
+            gsm.addAndRemoveGameState(GameStateManager.PLAY, GameStateManager.LOBBY);
         }
         if (button[1].getClicked()) {
             gsm.addAndRemoveGameState(GameStateManager.OPTIONS, GameStateManager.LOBBY);
