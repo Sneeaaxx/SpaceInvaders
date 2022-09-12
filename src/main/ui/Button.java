@@ -40,7 +40,7 @@ public class Button {
         height = img.getHeight() / 2;
         bounds = new AABB(this.x, this.y, this.width, this.height);
 
-        buttonFont = new Font("MatchupPro.ttf", Font.PLAIN, 20);
+        buttonFont = new Font("MatchupPro", Font.PLAIN, 25);
     }
 
     public void setCenter(boolean setCenter) {
