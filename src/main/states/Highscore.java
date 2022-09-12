@@ -13,7 +13,8 @@ public class Highscore extends GameState {
     public Highscore(GameStateManager gsm) {
         super(gsm);
 
-        rhs = new ReadHighScore("text/highscore.txt");
+        rhs = new ReadHighScore("D:\\Dev\\Java\\Java 2D Games\\Self Made\\SpaceInvaders\\res\\text\\high-score.txt");
+        rhs.lesen();
     }
 
     @Override

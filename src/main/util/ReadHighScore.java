@@ -10,6 +10,8 @@ public class ReadHighScore {
     private String[] highscores;
 
     public ReadHighScore(String path) {
+        highscores = new String[10];
+
         laden(path);
     }
 
@@ -17,7 +19,7 @@ public class ReadHighScore {
         datei = new File(path);
 
         if (!datei.isFile()) {
-            System.out.println("ERROR-ReadHighScore: '" + path + "' is not a file");
+            System.out.println("ERROR-ReadingHighScore: Couldn't load file '" + path + "'");
         }
     }
 
@@ -31,9 +33,14 @@ public class ReadHighScore {
 
         for (int i = 0; i < 10; i++) {
             assert scan != null;
+
             if (scan.hasNext()) {
                 highscores[i] = scan.nextLine();
             }
         }
+    }
+
+    public String[] getHighscores() {
+        return highscores;
     }
 }
