@@ -1,5 +1,6 @@
 package main.states;
 
+import main.entity.Player;
 import main.graphics.Image;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
@@ -11,6 +12,7 @@ public class Lobby extends GameState{
 
     private final Font titleFont;
     private final Button[] button;
+    private Player player;
 
     public Lobby(GameStateManager gsm) {
         super(gsm);
