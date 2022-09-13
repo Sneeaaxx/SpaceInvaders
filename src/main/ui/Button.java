@@ -81,7 +81,7 @@ public class Button {
 
         if (GameStateManager.isShowBounds()) {
             g2.setColor(Color.red);
-            g2.drawRect(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
+            g2.drawRect((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight());
         }
     }
 }

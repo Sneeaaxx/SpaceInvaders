@@ -24,6 +24,10 @@ public class Vector2f {
     public void setY(float y) {
         this.y = y;
     }
+    public void setVector2f(Vector2f vec) {
+        setX(vec.x);
+        setY(vec.y);
+    }
     public float getX() {
         return x;
     }

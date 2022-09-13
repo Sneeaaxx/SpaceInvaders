@@ -3,11 +3,13 @@ package main.entity;
 import main.graphics.Image;
 import main.maths.AABB;
 import main.maths.Vector2f;
+import main.util.KeyHandler;
+import main.util.MouseHandler;
+
+import java.awt.*;
 
 public abstract class GameObject {
 
-    protected float x;
-    protected float y;
     protected float dx;
     protected float dy;
 
@@ -22,6 +24,16 @@ public abstract class GameObject {
 
     protected GameObject(Vector2f vec) {
         this.vec = vec;
+    }
+
+    public void update(double dt) {
+        bounds.setX(vec.getX());
+        bounds.setY(vec.getY());
+    }
+    public abstract void inputs(KeyHandler keyH, MouseHandler mouseH);
+    public void render(Graphics2D g2) {
+        g2.setColor(Color.red);
+        g2.drawRect((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight());
     }
 
 }
