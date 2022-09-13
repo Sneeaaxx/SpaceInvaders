@@ -1,7 +1,8 @@
 package main.entity;
 
 import main.graphics.Image;
-import main.util.AABB;
+import main.maths.AABB;
+import main.maths.Vector2f;
 
 public abstract class GameObject {
 
@@ -17,5 +18,10 @@ public abstract class GameObject {
 
     protected AABB bounds;
     protected Image img;
+    protected Vector2f vec;
+
+    protected GameObject(Vector2f vec) {
+        this.vec = vec;
+    }
 
 }

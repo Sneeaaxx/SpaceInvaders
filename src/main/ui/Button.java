@@ -2,8 +2,9 @@ package main.ui;
 
 import main.Panel;
 import main.graphics.Image;
+import main.maths.Vector2f;
 import main.states.GameStateManager;
-import main.util.AABB;
+import main.maths.AABB;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
@@ -14,8 +15,7 @@ public class Button {
     private final Image img;
     private final AABB bounds;
 
-    private int x;
-    private final int y;
+    private Vector2f vec;
     private final int width;
     private final int height;
 
@@ -30,15 +30,14 @@ public class Button {
 
     private boolean setCenter;
 
-    public Button(Image img, int x, int y, String text) {
+    public Button(Image img, Vector2f vec, String text) {
         this.img = img;
-        this.x = x;
-        this.y = y;
+        this.vec = vec;
         this.text = text;
 
         width = img.getWidth();
         height = img.getHeight() / 2;
-        bounds = new AABB(this.x, this.y, this.width, this.height);
+        bounds = new AABB((int) vec.getX(), (int) vec.getY(), this.width, this.height);
 
         buttonFont = new Font("MatchupPro", Font.PLAIN, 25);
     }
@@ -53,8 +52,8 @@ public class Button {
 
     public void update(double dt) {
         if (setCenter) {
-            x = (Panel.width / 2) - (width / 2);
-            bounds.setX(x);
+            vec.setX((float) (Panel.width / 2) - (float) (width / 2));
+            bounds.setX((int) vec.getX());
             setCenter = false;
         }
 
@@ -70,19 +69,15 @@ public class Button {
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
         isInside = bounds.mouseIsInside(mouseH.getX(), mouseH.getY());
 
-        if (isInside && mouseH.getButton() == 1) {
-            isClicked = true;
-        } else {
-            isClicked = false;
-        }
+        isClicked = isInside && mouseH.getButton() == 1;
     }
 
     public void render(Graphics2D g2) {
-        g2.drawImage(img.getSubImage(0, isInsideYFactor, width, height), x, y, this.width, this.height, null);
+        g2.drawImage(img.getSubImage(0, isInsideYFactor, width, height), (int) vec.getX(), (int) vec.getY(), this.width, this.height, null);
 
         g2.setFont(buttonFont);
         g2.setColor(Color.lightGray);
-        g2.drawString(text, x + GameStateManager.getXForCenteredBoxText(text, width, g2), y + isInsideYTextFactor);
+        g2.drawString(text, (int) vec.getX() + GameStateManager.getXForCenteredBoxText(text, width, g2), (int) vec.getY() + isInsideYTextFactor);
 
         if (GameStateManager.isShowBounds()) {
             g2.setColor(Color.red);

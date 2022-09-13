@@ -1,4 +1,4 @@
-package main.util;
+package main.maths;
 
 public class AABB {
 

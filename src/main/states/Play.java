@@ -1,6 +1,7 @@
 package main.states;
 
 import main.entity.Player;
+import main.maths.Vector2f;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
@@ -13,7 +14,7 @@ public class Play extends GameState {
     public Play(GameStateManager gsm) {
         super(gsm);
 
-        player = new Player(100, 100);
+        player = new Player(new Vector2f(100, 100));
     }
 
     @Override

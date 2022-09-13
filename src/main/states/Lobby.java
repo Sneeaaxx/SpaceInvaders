@@ -2,6 +2,7 @@ package main.states;
 
 import main.entity.Player;
 import main.graphics.Image;
+import main.maths.Vector2f;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 import main.ui.Button;
@@ -20,13 +21,13 @@ public class Lobby extends GameState{
         titleFont = new Font("EquipmentPro", Font.PLAIN, 90);
 
         button = new Button[4];
-        button[0] = new Button(new Image("ui/GrayLargeButton6.png"), 100, 270, "Play");
+        button[0] = new Button(new Image("ui/GrayLargeButton6.png"), new Vector2f(100,270), "Play");
         button[0].setCenter(true);
-        button[1] = new Button(new Image("ui/GrayLargeButton6.png"), 100, 370, "Options");
+        button[1] = new Button(new Image("ui/GrayLargeButton6.png"), new Vector2f(100,370), "Options");
         button[1].setCenter(true);
-        button[2] = new Button(new Image("ui/GrayLargeButton6.png"), 100, 470, "Highscore");
+        button[2] = new Button(new Image("ui/GrayLargeButton6.png"), new Vector2f(100,470), "Highscore");
         button[2].setCenter(true);
-        button[3] = new Button(new Image("ui/GrayLargeButton6.png"), 100, 570, "Exit");
+        button[3] = new Button(new Image("ui/GrayLargeButton6.png"), new Vector2f(100,570), "Exit");
         button[3].setCenter(true);
     }
 
