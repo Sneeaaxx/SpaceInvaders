@@ -15,7 +15,7 @@ public class Button {
     private final Image img;
     private final AABB bounds;
 
-    private Vector2f vec;
+    private final Vector2f vec;
     private final int width;
     private final int height;
 

@@ -2,45 +2,51 @@ package main.maths;
 
 public class AABB {
 
-    private int x;
-    private int y;
-    private int width;
-    private int height;
+    private float x;
+    private float y;
+    private float width;
+    private float height;
 
-    public AABB(int x, int y, int width, int height) {
+    public AABB(float x, float y, float width, float height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
 
-    public boolean mouseIsInside(int x, int y) {
+    public boolean mouseIsInside(float x, float y) {
         return x > this.x && x < this.x + width && y > this.y && y < this.y + height;
     }
 
-    public int getX() {
+    public boolean rectangleIsInside(AABB rect) {
+        return this.x + this.width >= rect.x && this.x <= rect.x + rect.width &&
+                this.y + this.height >= rect.y && this.y <= rect.y + rect.height;
+    }
+
+
+    public float getX() {
         return x;
     }
-    public int getY() {
+    public float getY() {
         return y;
     }
-    public int getWidth() {
+    public float getWidth() {
         return width;
     }
-    public int getHeight() {
+    public float getHeight() {
         return height;
     }
 
-    public void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
-    public void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
-    public void setWidth(int width) {
+    public void setWidth(float width) {
         this.width = width;
     }
-    public void setHeight(int height) {
+    public void setHeight(float height) {
         this.height = height;
     }
 }
