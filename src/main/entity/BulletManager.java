@@ -11,9 +11,14 @@ import java.util.ArrayList;
 public class BulletManager {
 
     private ArrayList<Bullet> bullets;
+    private boolean canSpawnBullet;
+    private boolean spawnedBullet;
+    private double bulletSpawnCooldown;
+    private double bulletSpawnTime;
 
     public BulletManager() {
         bullets = new ArrayList<>();
+        bulletSpawnCooldown = 1E9;
     }
 
     private void addBullet() {
@@ -22,20 +27,35 @@ public class BulletManager {
 
     public void update(double dt) {
         for (Bullet bullet : bullets) {
-
             bullet.update(dt);
-
-            if (bullet.getY() < -50) {
-                bullets.remove(bullet);
-            }
         }
 
-        addBullet();
+        bullets.removeIf(bullet -> bullet.getY() < 40);
+
+        if (canSpawnBullet) {
+            bulletSpawnTime = dt;
+        } else {
+            if (!spawnedBullet) {
+                addBullet();
+                spawnedBullet = true;
+            }
+
+            if (dt > bulletSpawnCooldown + bulletSpawnTime) {
+                canSpawnBullet = true;
+                spawnedBullet = false;
+            }
+        }
     }
 
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
+        keyH.tick();
+
         for (Bullet bullet : bullets) {
             bullet.inputs(keyH, mouseH);
+        }
+
+        if (canSpawnBullet && keyH.space.clicked) {
+            canSpawnBullet = false;
         }
     }
 
