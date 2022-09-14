@@ -44,6 +44,7 @@ public class KeyHandler implements KeyListener {
     public Key left = new Key();
     public Key right = new Key();
     public Key escape = new Key();
+    public Key space = new Key();
     public Key F1 = new Key();
 
     public KeyHandler(Panel game) {
@@ -68,6 +69,7 @@ public class KeyHandler implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_A) left.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_D) right.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE) escape.toggle(pressed);
+        if(e.getKeyCode() == KeyEvent.VK_SPACE) space.toggle(pressed);
         if(e.getKeyCode() == KeyEvent.VK_F1) F1.toggle(pressed);
     }
 
