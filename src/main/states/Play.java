@@ -20,7 +20,7 @@ public class Play extends GameState {
 
         player = new Player(new Vector2f(100, 100));
         stone = new Stone(new Vector2f(100,200));
-        bm = new BulletManager();
+        bm = new BulletManager(player);
     }
 
     @Override

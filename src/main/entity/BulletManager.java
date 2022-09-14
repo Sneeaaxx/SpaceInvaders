@@ -2,6 +2,8 @@ package main.entity;
 
 import main.entity.bullet.Bullet;
 import main.maths.Vector2f;
+import main.states.GameState;
+import main.states.GameStateManager;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
@@ -11,18 +13,20 @@ import java.util.ArrayList;
 public class BulletManager {
 
     private ArrayList<Bullet> bullets;
+    private Player player;
     private boolean canSpawnBullet;
     private boolean spawnedBullet;
     private double bulletSpawnCooldown;
     private double bulletSpawnTime;
 
-    public BulletManager() {
+    public BulletManager(Player player) {
+        this.player = player;
         bullets = new ArrayList<>();
         bulletSpawnCooldown = 1E9;
     }
 
     private void addBullet() {
-        bullets.add(new Bullet(new Vector2f(100, 100)));
+        bullets.add(new Bullet(new Vector2f(player.vec.getX() + ((player.getBounds().getWidth() / 2) - 5), player.vec.getY())));
     }
 
     public void update(double dt) {

@@ -19,6 +19,10 @@ public class Player extends GameObject {
         bounds = new AABB((int) vec.getX(), (int) vec.getY(), 50, 50);
     }
 
+    public AABB getBounds() {
+        return bounds;
+    }
+
     private void movement() {
         if (vec.getY() - dy > 0 && up) {
             vec.setY(vec.getY() - dy);
