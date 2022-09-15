@@ -40,6 +40,8 @@ public class Player extends GameObject {
 
     public void update(double dt) {
         super.update(dt);
+
+        movement();
     }
 
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {

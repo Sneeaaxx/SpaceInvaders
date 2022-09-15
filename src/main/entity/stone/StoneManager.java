@@ -1,45 +1,59 @@
 package main.entity.stone;
 
 import main.Panel;
+import main.entity.EntityManager;
+import main.entity.GameObject;
 import main.entity.Player;
+import main.entity.bullet.BulletManager;
 import main.maths.Vector2f;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Random;
+public class StoneManager extends EntityManager {
 
-public class StoneManager {
+    private BulletManager bm;
 
-    private ArrayList<Stone> stones;
-    private Random random;
-    private Player player;
+    public StoneManager(Player player, BulletManager bm) {
+        super(player);
 
-    public StoneManager(Player player) {
-        stones = new ArrayList<>();
-        random = new Random();
+        this.bm = bm;
 
-        this.player = player;
+        entityDeleteBorder = Panel.height + 100;
     }
 
-    public void addStone() {
-        stones.add(new Stone(new Vector2f(random.nextInt(10, Panel.width - 50), -100)));
+    public void addEntity() {
+        entitys.add(new Stone(new Vector2f(random.nextInt(10, Panel.width - 50), -100)));
+    }
+    private void checkDeletion() {
+        entitys.removeIf(stone -> stone.getY() > entityDeleteBorder);
+        for (GameObject entity : bm.getEntitys()) {
+            entitys.removeIf(stone -> stone.getBounds().rectangleIsInside(entity.getBounds()));
+        }
     }
 
     public void update(double dt) {
-        for (Stone stone : stones) {
-            stone.update(dt);
-            if (player.getBounds().rectangleIsInside(stone.getBounds())) {
+        super.update(dt);
+
+        if (canSpawnEntity) {
+            entitySpawnTime = dt;
+            canSpawnEntity = false;
+        } else {
+            if (!spawnedEntity) {
+                addEntity();
+                spawnedEntity = true;
+            }
+
+            if (dt > entitySpawnTime + entitySpawnCooldown) {
+                canSpawnEntity = true;
+                spawnedEntity = false;
+                entitySpawnCooldown = random.nextDouble(0, 1E9);
+            }
+        }
+
+        for (GameObject entity : entitys) {
+            if (player.getBounds().rectangleIsInside(entity.getBounds())) {
                 System.out.println("Is Inside");
             }
         }
 
-        addStone();
-    }
-
-    public void render(Graphics2D g2) {
-        g2.setColor(Color.green);
-        for (Stone stone : stones) {
-            g2.drawRect((int) stone.getBounds().getX(), (int) stone.getBounds().getY(), (int) stone.getBounds().getWidth(), (int) stone.getBounds().getHeight());
-        }
+        checkDeletion();
     }
 }

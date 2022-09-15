@@ -26,11 +26,10 @@ public abstract class GameObject {
         this.vec = vec;
     }
 
-    public Vector2f getVec() {
-        return vec;
-    }
-    public AABB getBounds(){
-        return bounds;
+    public Vector2f getVec() { return vec; }
+    public AABB getBounds() { return bounds; }
+    public float getY() {
+        return (int) vec.getY();
     }
 
     public void update(double dt) {

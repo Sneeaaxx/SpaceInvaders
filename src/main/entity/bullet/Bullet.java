@@ -17,10 +17,6 @@ public class Bullet extends GameObject {
         bounds = new AABB(vec.getX(), vec.getY(), 10, 10);
     }
 
-    public float getY() {
-        return (int) vec.getY();
-    }
-
     public void update(double dt) {
         super.update(dt);
 

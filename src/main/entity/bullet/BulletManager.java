@@ -1,71 +1,56 @@
 package main.entity.bullet;
 
+import main.entity.EntityManager;
+import main.entity.GameObject;
 import main.entity.Player;
+import main.entity.stone.StoneManager;
 import main.maths.Vector2f;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
-import java.awt.*;
-import java.util.ArrayList;
+public class BulletManager extends EntityManager {
 
-public class BulletManager {
-
-    private final ArrayList<Bullet> bullets;
-    private final Player player;
-    private boolean canSpawnBullet;
-    private boolean spawnedBullet;
-    private final double bulletSpawnCooldown;
-    private double bulletSpawnTime;
 
     public BulletManager(Player player) {
-        this.player = player;
-        bullets = new ArrayList<>();
+        super(player);
 
-        canSpawnBullet = true;
-        bulletSpawnCooldown = 0.5E9;
+        entitySpawnCooldown = 0.5E9;
+        entityDeleteBorder = -20;
     }
 
-    private void addBullet() {
-        bullets.add(new Bullet(new Vector2f(player.getVec().getX() + ((player.getBounds().getWidth() / 2) - 5), player.getVec().getY())));
+    public void addEntity() {
+        entitys.add(new Bullet(new Vector2f(player.getVec().getX() + ((player.getBounds().getWidth() / 2) - 5), player.getVec().getY())));
     }
 
     public void update(double dt) {
-        for (Bullet bullet : bullets) {
-            bullet.update(dt);
-        }
-        bullets.removeIf(bullet -> bullet.getY() < -20);
+        super.update(dt);
 
-        if (canSpawnBullet) {
-            bulletSpawnTime = dt;
+        if (canSpawnEntity) {
+            entitySpawnTime = dt;
         } else {
-            if (!spawnedBullet) {
-                addBullet();
-                spawnedBullet = true;
+            if (!spawnedEntity) {
+                addEntity();
+                spawnedEntity = true;
             }
 
-            if (dt > bulletSpawnCooldown + bulletSpawnTime) {
-                canSpawnBullet = true;
-                spawnedBullet = false;
+            if (dt > entitySpawnCooldown + entitySpawnTime) {
+                canSpawnEntity = true;
+                spawnedEntity = false;
             }
         }
+
+        entitys.removeIf(bullet -> bullet.getY() < entityDeleteBorder);
     }
 
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
         keyH.tick();
 
-        for (Bullet bullet : bullets) {
-            bullet.inputs(keyH, mouseH);
+        for (GameObject entity : entitys) {
+            entity.inputs(keyH, mouseH);
         }
 
-        if (canSpawnBullet && keyH.space.clicked) {
-            canSpawnBullet = false;
-        }
-    }
-
-    public void render(Graphics2D g2) {
-        g2.setColor(Color.blue);
-        for (Bullet bullet : bullets) {
-            g2.drawRect((int) bullet.getBounds().getX(), (int) bullet.getBounds().getY(), (int) bullet.getBounds().getWidth(), (int) bullet.getBounds().getHeight());
+        if (canSpawnEntity && keyH.space.clicked) {
+            canSpawnEntity = false;
         }
     }
 }

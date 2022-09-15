@@ -2,7 +2,6 @@ package main.states;
 
 import main.entity.bullet.BulletManager;
 import main.entity.Player;
-import main.entity.stone.Stone;
 import main.entity.stone.StoneManager;
 import main.maths.Vector2f;
 import main.util.KeyHandler;
@@ -22,7 +21,7 @@ public class Play extends GameState {
         player = new Player(new Vector2f(100, 100));
 
         bm = new BulletManager(player);
-        sm = new StoneManager(player);
+        sm = new StoneManager(player, bm);
     }
 
     @Override
