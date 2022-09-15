@@ -1,9 +1,7 @@
-package main.entity;
+package main.entity.bullet;
 
-import main.entity.bullet.Bullet;
+import main.entity.Player;
 import main.maths.Vector2f;
-import main.states.GameState;
-import main.states.GameStateManager;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
@@ -12,29 +10,30 @@ import java.util.ArrayList;
 
 public class BulletManager {
 
-    private ArrayList<Bullet> bullets;
-    private Player player;
+    private final ArrayList<Bullet> bullets;
+    private final Player player;
     private boolean canSpawnBullet;
     private boolean spawnedBullet;
-    private double bulletSpawnCooldown;
+    private final double bulletSpawnCooldown;
     private double bulletSpawnTime;
 
     public BulletManager(Player player) {
         this.player = player;
         bullets = new ArrayList<>();
-        bulletSpawnCooldown = 1E9;
+
+        canSpawnBullet = true;
+        bulletSpawnCooldown = 0.5E9;
     }
 
     private void addBullet() {
-        bullets.add(new Bullet(new Vector2f(player.vec.getX() + ((player.getBounds().getWidth() / 2) - 5), player.vec.getY())));
+        bullets.add(new Bullet(new Vector2f(player.getVec().getX() + ((player.getBounds().getWidth() / 2) - 5), player.getVec().getY())));
     }
 
     public void update(double dt) {
         for (Bullet bullet : bullets) {
             bullet.update(dt);
         }
-
-        bullets.removeIf(bullet -> bullet.getY() < 40);
+        bullets.removeIf(bullet -> bullet.getY() < -20);
 
         if (canSpawnBullet) {
             bulletSpawnTime = dt;
@@ -64,8 +63,9 @@ public class BulletManager {
     }
 
     public void render(Graphics2D g2) {
+        g2.setColor(Color.blue);
         for (Bullet bullet : bullets) {
-            bullet.render(g2);
+            g2.drawRect((int) bullet.getBounds().getX(), (int) bullet.getBounds().getY(), (int) bullet.getBounds().getWidth(), (int) bullet.getBounds().getHeight());
         }
     }
 }

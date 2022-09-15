@@ -1,6 +1,7 @@
 package main.entity;
 
 import main.Panel;
+import main.entity.stone.Stone;
 import main.maths.AABB;
 import main.maths.Vector2f;
 import main.util.KeyHandler;
@@ -13,8 +14,8 @@ public class Player extends GameObject {
     public Player(Vector2f vec) {
         super(vec);
 
-        dx = 0.5f;
-        dy = 0.5f;
+        dx = 3f;
+        dy = 3f;
 
         bounds = new AABB((int) vec.getX(), (int) vec.getY(), 50, 50);
     }
@@ -37,12 +38,8 @@ public class Player extends GameObject {
         }
     }
 
-    public void update(double dt, Stone stone) {
+    public void update(double dt) {
         super.update(dt);
-
-        if (!bounds.rectangleIsInside(stone.bounds)) {
-            movement();
-        }
     }
 
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {

@@ -26,14 +26,22 @@ public abstract class GameObject {
         this.vec = vec;
     }
 
+    public Vector2f getVec() {
+        return vec;
+    }
+    public AABB getBounds(){
+        return bounds;
+    }
+
     public void update(double dt) {
         bounds.setX(vec.getX());
         bounds.setY(vec.getY());
     }
-    public abstract void inputs(KeyHandler keyH, MouseHandler mouseH);
+    public void inputs(KeyHandler keyH, MouseHandler mouseH) {
+
+    }
     public void render(Graphics2D g2) {
         g2.setColor(Color.red);
         g2.drawRect((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight());
     }
-
 }

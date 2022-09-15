@@ -116,8 +116,8 @@ public class Panel extends JPanel implements Runnable {
             framesCount++;
 
             int thisSecond = (int) (lastUpdateTime / 1000000000);
-            if(thisSecond > lastSecondTime){
-                if(framesCount != oldFrameCount){
+            if (thisSecond > lastSecondTime){
+                if (framesCount != oldFrameCount){
                     System.out.println("NEW SECOND " + thisSecond + " " + framesCount);
                     oldFrameCount = framesCount;
                 }
@@ -130,10 +130,10 @@ public class Panel extends JPanel implements Runnable {
                 lastSecondTime = thisSecond;
             }
 
-            while(now - lastRenderTime < TTBR && now -lastUpdateTime < TBU){
+            while (now - lastRenderTime < TTBR && now -lastUpdateTime < TBU){
                 Thread.yield();
 
-                try{
+                try {
                     Thread.sleep(1);
                 } catch(Exception e){
                     System.out.println("ERROR: yielding thread");

@@ -1,5 +1,6 @@
-package main.entity;
+package main.entity.stone;
 
+import main.entity.GameObject;
 import main.maths.AABB;
 import main.maths.Vector2f;
 import main.util.KeyHandler;
@@ -11,7 +12,7 @@ public class Stone extends GameObject {
     public Stone(Vector2f vec) {
         super(vec);
 
-        this.dy = 0.3f;
+        this.dy = 5f;
 
         bounds = new AABB(vec.getX(), vec.getY(), 50, 50);
     }
@@ -26,11 +27,5 @@ public class Stone extends GameObject {
     @Override
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
 
-    }
-
-    @Override
-    public void render(Graphics2D g2) {
-        g2.setColor(Color.green);
-        g2.drawRect((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight());
     }
 }
