@@ -27,15 +27,15 @@ public class Player extends GameObject {
     }
 
     private void movement() {
-        if (vec.getY() - dy > 0 && up) {
+        if (vec.getY() - dy - 5 > 0 && up) {
             vec.setY(vec.getY() - dy);
-        } else if (vec.getY() + dy < Panel.height - bounds.getHeight() && down) {
+        } else if (vec.getY() + dy < Panel.height - bounds.getHeight() - 5 && down) {
             vec.setY(vec.getY() + dy);
         }
 
-        if (vec.getX() - dx > 0 && left) {
+        if (vec.getX() - dx - 5 > 0 && left) {
             vec.setX(vec.getX() - dx);
-        } else if (vec.getX() + dx < Panel.width - bounds.getWidth() && right) {
+        } else if (vec.getX() + dx < Panel.width - bounds.getWidth() - 5 && right) {
             vec.setX(vec.getX() + dx);
         }
     }
