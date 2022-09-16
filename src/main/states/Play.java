@@ -29,7 +29,7 @@ public class Play extends GameState {
         if (!player.getDead()) {
             player.update(dt);
         } else {
-            player = null;
+            gsm.addAndRemoveGameState(GameStateManager.LOBBY, GameStateManager.PLAY);
         }
 
         bm.update(dt);

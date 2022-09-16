@@ -102,7 +102,6 @@ public class Panel extends JPanel implements Runnable {
                 lastUpdateTime += TBU;
                 updateCount++;
                 tickCount++;
-                // ^^^^^^ this variable is used for displaying it in PlayState
             }
 
             if(now - lastUpdateTime > TBU){

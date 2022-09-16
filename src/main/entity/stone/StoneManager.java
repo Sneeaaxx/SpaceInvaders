@@ -49,7 +49,10 @@ public class StoneManager extends EntityManager {
 
         for (GameObject entity : entitys) {
             if (player.getBounds().rectangleIsInside(entity.getBounds())) {
-                System.out.println("Is Inside");
+                if (!player.getIsInvis()) {
+                    player.setLife(player.getLife() - 1);
+                    player.setIsInvis(true);
+                }
             }
         }
 

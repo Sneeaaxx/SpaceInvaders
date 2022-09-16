@@ -20,6 +20,11 @@ public abstract class GameObject {
 
     protected int life;
     protected boolean dead;
+    protected double invisTime;
+    protected double invisCooldown;
+    protected boolean isInvis;
+
+    protected float invisAlpha;
 
     protected AABB bounds;
     protected Image img;
@@ -33,6 +38,7 @@ public abstract class GameObject {
     public void setLife(int life) {
         this.life = life;
     }
+    public void setIsInvis(boolean isInvis) { this.isInvis = isInvis; }
 
     public Vector2f getVec() { return vec; }
     public AABB getBounds() { return bounds; }
@@ -40,6 +46,7 @@ public abstract class GameObject {
         return (int) vec.getY();
     }
     public boolean getDead() { return dead; }
+    public boolean getIsInvis() { return isInvis; }
     public int getLife() { return life; }
 
     public void update(double dt) {

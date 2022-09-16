@@ -17,6 +17,7 @@ public class Player extends GameObject {
         dy = 3f;
 
         life = 3;
+        invisCooldown = 3E9;
 
         bounds = new AABB((int) vec.getX(), (int) vec.getY(), 50, 50);
     }
@@ -39,10 +40,26 @@ public class Player extends GameObject {
         }
     }
 
+    private void invisCheck(double dt) {
+        if (!isInvis) {
+            invisTime = dt;
+            invisAlpha = 1f;
+        } else {
+            invisAlpha = 0.5f;
+            if (dt > invisTime + invisCooldown) {
+                isInvis = false;
+            }
+        }
+    }
+
     public void update(double dt) {
         super.update(dt);
 
         movement();
+
+        invisCheck(dt);
+
+        System.out.println(life);
     }
 
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
@@ -50,7 +67,6 @@ public class Player extends GameObject {
         left = keyH.a.down;
         down = keyH.s.down;
         right = keyH.d.down;
-
 
         if (up && down) {
             up = false;
@@ -63,7 +79,14 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics2D g2) {
+        setAlpha(g2, invisAlpha);
         g2.setColor(Color.red);
         g2.drawRect((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight());
+        setAlpha(g2, 1f);
+    }
+
+    private void setAlpha(Graphics2D g2, float v) {
+        AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, v);
+        g2.setComposite(alphaComposite);
     }
 }
