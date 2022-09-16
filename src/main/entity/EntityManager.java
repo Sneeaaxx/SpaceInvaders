@@ -36,7 +36,11 @@ public abstract class EntityManager {
 
     public void update(double dt) {
         for (GameObject entity : entitys) {
-            entity.update(dt);
+            if (!entity.getDead()) {
+                entity.update(dt);
+            } else {
+                entitys.remove(entity);
+            }
         }
     }
 

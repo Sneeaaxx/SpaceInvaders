@@ -18,6 +18,9 @@ public abstract class GameObject {
     protected boolean right;
     protected boolean left;
 
+    protected int life;
+    protected boolean dead;
+
     protected AABB bounds;
     protected Image img;
     protected Vector2f vec;
@@ -26,15 +29,26 @@ public abstract class GameObject {
         this.vec = vec;
     }
 
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
     public Vector2f getVec() { return vec; }
     public AABB getBounds() { return bounds; }
     public float getY() {
         return (int) vec.getY();
     }
+    public boolean getDead() { return dead; }
+    public int getLife() { return life; }
 
     public void update(double dt) {
         bounds.setX(vec.getX());
         bounds.setY(vec.getY());
+
+        if (life <= 0) {
+            dead = true;
+        }
     }
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
 

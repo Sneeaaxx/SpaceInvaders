@@ -13,9 +13,14 @@ public class Bullet extends GameObject {
     public Bullet(Vector2f vec) {
         super(vec);
 
+        life = 1;
+
         dy = -4f;
         bounds = new AABB(vec.getX(), vec.getY(), 10, 10);
     }
+
+
+
 
     public void update(double dt) {
         super.update(dt);

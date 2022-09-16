@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class Play extends GameState {
 
-    private final Player player;
+    private Player player;
     private final BulletManager bm;
     private StoneManager sm;
 
@@ -26,7 +26,12 @@ public class Play extends GameState {
 
     @Override
     public void update(double dt) {
-        player.update(dt);
+        if (!player.getDead()) {
+            player.update(dt);
+        } else {
+            player = null;
+        }
+
         bm.update(dt);
         sm.update(dt);
     }

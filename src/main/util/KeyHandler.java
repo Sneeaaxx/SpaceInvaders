@@ -39,10 +39,34 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public Key up = new Key();
-    public Key down = new Key();
-    public Key left = new Key();
-    public Key right = new Key();
+
+    public Key a = new Key();
+    public Key b = new Key();
+    public Key c = new Key();
+    public Key d = new Key();
+    public Key e = new Key();
+    public Key f = new Key();
+    public Key g = new Key();
+    public Key h = new Key();
+    public Key i = new Key();
+    public Key j = new Key();
+    public Key k = new Key();
+    public Key l = new Key();
+    public Key m = new Key();
+    public Key n = new Key();
+    public Key o = new Key();
+    public Key p = new Key();
+    public Key q = new Key();
+    public Key r = new Key();
+    public Key s = new Key();
+    public Key t = new Key();
+    public Key u = new Key();
+    public Key v = new Key();
+    public Key w = new Key();
+    public Key x = new Key();
+    public Key y = new Key();
+    public Key z = new Key();
+
     public Key escape = new Key();
     public Key space = new Key();
     public Key F1 = new Key();
@@ -63,14 +87,37 @@ public class KeyHandler implements KeyListener {
         }
     }
 
-    public void toggle(KeyEvent e, boolean pressed) {
-        if(e.getKeyCode() == KeyEvent.VK_W) up.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_S) down.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_A) left.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_D) right.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE) escape.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_SPACE) space.toggle(pressed);
-        if(e.getKeyCode() == KeyEvent.VK_F1) F1.toggle(pressed);
+    public void toggle(KeyEvent event, boolean pressed) {
+        if(event.getKeyCode() == KeyEvent.VK_A) a.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_B) b.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_C) c.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_D) d.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_E) e.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_F) f.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_G) g.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_H) h.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_I) i.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_J) j.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_K) k.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_L) l.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_M) m.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_N) n.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_O) o.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_P) p.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_Q) q.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_R) r.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_S) s.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_T) t.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_U) u.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_V) v.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_W) w.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_X) x.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_Y) y.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_Z) z.toggle(pressed);
+
+        if(event.getKeyCode() == KeyEvent.VK_ESCAPE) escape.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_SPACE) space.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_F1) F1.toggle(pressed);
     }
 
     @Override

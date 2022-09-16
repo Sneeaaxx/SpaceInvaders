@@ -9,7 +9,7 @@ import main.maths.Vector2f;
 
 public class StoneManager extends EntityManager {
 
-    private BulletManager bm;
+    private final BulletManager bm;
 
     public StoneManager(Player player, BulletManager bm) {
         super(player);
@@ -22,10 +22,9 @@ public class StoneManager extends EntityManager {
     public void addEntity() {
         entitys.add(new Stone(new Vector2f(random.nextInt(10, Panel.width - 50), -100)));
     }
-    private void checkDeletion() {
-        entitys.removeIf(stone -> stone.getY() > entityDeleteBorder);
+    private void checkCollision() {
         for (GameObject entity : bm.getEntitys()) {
-            entitys.removeIf(stone -> stone.getBounds().rectangleIsInside(entity.getBounds()));
+            entitys.removeIf(stone -> entity.getBounds().rectangleIsInside(stone.getBounds()));
         }
     }
 
@@ -54,6 +53,6 @@ public class StoneManager extends EntityManager {
             }
         }
 
-        checkDeletion();
+        checkCollision();
     }
 }

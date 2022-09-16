@@ -154,7 +154,7 @@ public class Panel extends JPanel implements Runnable {
 
     private void render() {
         if(g != null) {
-            g.setColor(new Color(33, 30, 39));
+            g.setColor(new Color(38, 34, 34));
             g.fillRect(0, 0, width, height);
             gsm.render(g);
         }

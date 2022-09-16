@@ -14,6 +14,8 @@ public class Stone extends GameObject {
 
         this.dy = 5f;
 
+        life = 1;
+
         bounds = new AABB(vec.getX(), vec.getY(), 50, 50);
     }
 

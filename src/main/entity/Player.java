@@ -1,7 +1,6 @@
 package main.entity;
 
 import main.Panel;
-import main.entity.stone.Stone;
 import main.maths.AABB;
 import main.maths.Vector2f;
 import main.util.KeyHandler;
@@ -17,6 +16,8 @@ public class Player extends GameObject {
         dx = 3f;
         dy = 3f;
 
+        life = 3;
+
         bounds = new AABB((int) vec.getX(), (int) vec.getY(), 50, 50);
     }
 
@@ -27,13 +28,13 @@ public class Player extends GameObject {
     private void movement() {
         if (vec.getY() - dy > 0 && up) {
             vec.setY(vec.getY() - dy);
-        } else if (vec.getY() + dy < Panel.height && down) {
+        } else if (vec.getY() + dy < Panel.height - bounds.getHeight() && down) {
             vec.setY(vec.getY() + dy);
         }
 
         if (vec.getX() - dx > 0 && left) {
             vec.setX(vec.getX() - dx);
-        } else if (vec.getX() + dx < Panel.width && right) {
+        } else if (vec.getX() + dx < Panel.width - bounds.getWidth() && right) {
             vec.setX(vec.getX() + dx);
         }
     }
@@ -45,10 +46,11 @@ public class Player extends GameObject {
     }
 
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
-        up = keyH.up.down;
-        down = keyH.down.down;
-        right = keyH.right.down;
-        left = keyH.left.down;
+        up = keyH.w.down;
+        left = keyH.a.down;
+        down = keyH.s.down;
+        right = keyH.d.down;
+
 
         if (up && down) {
             up = false;

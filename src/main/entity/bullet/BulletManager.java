@@ -3,7 +3,6 @@ package main.entity.bullet;
 import main.entity.EntityManager;
 import main.entity.GameObject;
 import main.entity.Player;
-import main.entity.stone.StoneManager;
 import main.maths.Vector2f;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
