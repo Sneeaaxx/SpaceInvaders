@@ -58,8 +58,6 @@ public class Player extends GameObject {
         movement();
 
         invisCheck(dt);
-
-        System.out.println(life);
     }
 
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {

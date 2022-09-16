@@ -6,15 +6,11 @@ import main.maths.Vector2f;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
-import java.awt.*;
-
 public class Stone extends GameObject {
     public Stone(Vector2f vec) {
         super(vec);
 
-        this.dy = 5f;
-
-        life = 1;
+        this.dy = 3.5f;
 
         bounds = new AABB(vec.getX(), vec.getY(), 50, 50);
     }

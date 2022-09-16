@@ -10,11 +10,20 @@ import main.maths.Vector2f;
 public class StoneManager extends EntityManager {
 
     private final BulletManager bm;
+    private boolean spawnEntityRatioIncrease;
+    private double spawnEntityRatioIncreaseTime;
+    private double spawnEntityRatioIncreaseDuration;
+    private double entitySpawnTimeRandomBorder;
+    private int life = 1;
 
     public StoneManager(Player player, BulletManager bm) {
         super(player);
 
         this.bm = bm;
+
+        entitySpawnTimeRandomBorder = 1E9;
+
+        spawnEntityRatioIncreaseDuration = 1E10;
 
         entityDeleteBorder = Panel.height + 100;
     }
@@ -31,6 +40,18 @@ public class StoneManager extends EntityManager {
     public void update(double dt) {
         super.update(dt);
 
+        if (spawnEntityRatioIncrease) {
+            spawnEntityRatioIncreaseTime = dt;
+            spawnEntityRatioIncrease = false;
+        } else if (dt > spawnEntityRatioIncreaseDuration + spawnEntityRatioIncreaseTime) {
+            entitySpawnTimeRandomBorder -= 0.05E9;
+            if (entitySpawnTimeRandomBorder <= 0.5E9) {
+                entitySpawnTimeRandomBorder = 0.5E9;
+            }
+            System.out.println(entitySpawnTimeRandomBorder);
+            spawnEntityRatioIncrease = true;
+        }
+
         if (canSpawnEntity) {
             entitySpawnTime = dt;
             canSpawnEntity = false;
@@ -43,7 +64,7 @@ public class StoneManager extends EntityManager {
             if (dt > entitySpawnTime + entitySpawnCooldown) {
                 canSpawnEntity = true;
                 spawnedEntity = false;
-                entitySpawnCooldown = random.nextDouble(0, 1E9);
+                entitySpawnCooldown = random.nextDouble(0, entitySpawnTimeRandomBorder);
             }
         }
 
