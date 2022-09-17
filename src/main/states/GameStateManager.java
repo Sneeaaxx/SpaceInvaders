@@ -2,6 +2,7 @@ package main.states;
 
 import main.Panel;
 import main.graphics.FontF;
+import main.states.states.*;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
@@ -11,9 +12,10 @@ public class GameStateManager {
 
     private final GameState[] gs;
     public static final int LOBBY = 0;
-    public static final int OPTIONS = 1;
+    public static final int PLAY = 1;
+    public static final int OPTIONS = 4;
     public static final int HIGHSCORE = 2;
-    public static final int PLAY = 3;
+    public static final int PAUSE = 3;
 
     public static FontF fontF;
 
@@ -32,6 +34,10 @@ public class GameStateManager {
         fontF.loadFont("fonts/MatchupPro.ttf", "MatchupPro");
 
         addGameState(LOBBY);
+    }
+
+    public boolean isState(int i) {
+        return gs[i] != null;
     }
 
     public void addAndRemoveGameState(int add, int remove) {
@@ -62,23 +68,23 @@ public class GameStateManager {
             return;
         }
 
+        System.out.println("LOADING-GameState: '" + num + "'");
 
         switch (num) {
             case LOBBY -> {
-                System.out.println("LOADING-GameState: '" + num + "'");
                 gs[num] = new Lobby(this);
             }
             case OPTIONS -> {
-                System.out.println("LOADING-GameState: '" + num + "'");
                 gs[num] = new Options(this);
             }
             case HIGHSCORE -> {
-                System.out.println("LOADING-GameState: '" + num + "'");
                 gs[num] = new Highscore(this);
             }
             case PLAY -> {
-                System.out.println("LOADING-GameState: '" + num + "'");
                 gs[num] = new Play(this);
+            }
+            case PAUSE -> {
+                gs[num] = new Pause(this);
             }
             default -> System.out.println("ERROR-GameStateManager: There is no GameState with this num: '" + num + "'");
         }

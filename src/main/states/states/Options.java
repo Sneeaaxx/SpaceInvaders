@@ -1,11 +1,13 @@
-package main.states;
+package main.states.states;
 
+import main.states.GameState;
+import main.states.GameStateManager;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
 import java.awt.*;
 
-public class Options extends GameState{
+public class Options extends GameState {
 
     private final Font title;
     private final Font text;

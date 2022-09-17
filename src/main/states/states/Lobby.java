@@ -1,15 +1,17 @@
-package main.states;
+package main.states.states;
 
 import main.entity.Player;
 import main.graphics.Image;
 import main.maths.Vector2f;
+import main.states.GameState;
+import main.states.GameStateManager;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 import main.ui.Button;
 
 import java.awt.*;
 
-public class Lobby extends GameState{
+public class Lobby extends GameState {
 
     private final Font titleFont;
     private final Button[] button;

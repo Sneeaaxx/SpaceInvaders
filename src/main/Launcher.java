@@ -7,7 +7,10 @@ public class Launcher {
     }
 }
 
-// TODO: bullet should only break one block
 // TODO: Highscore System
 // TODO: Options Key changer
+// TODO: Adding Pictures
+// TODO: Pause Screen
+// TODO: Dead Screen
+// TODO: Adding Highlight Screen
 
