@@ -24,6 +24,8 @@ public class BulletManager extends EntityManager {
     public void update(double dt) {
         super.update(dt);
 
+        entitys.removeIf(bullet -> bullet.getLife() <= 0);
+
         if (canSpawnEntity) {
             entitySpawnTime = dt;
         } else {

@@ -32,8 +32,13 @@ public class StoneManager extends EntityManager {
         entitys.add(new Stone(new Vector2f(random.nextInt(10, Panel.width - 50), -100)));
     }
     private void checkCollision() {
-        for (GameObject entity : bm.getEntitys()) {
-            entitys.removeIf(stone -> entity.getBounds().rectangleIsInside(stone.getBounds()));
+        for (GameObject bulletEntity : bm.getEntitys()) {
+            for (GameObject stoneEntity : entitys) {
+                if (bulletEntity.getBounds().rectangleIsInside(stoneEntity.getBounds())) {
+                    bulletEntity.setLife(bulletEntity.getLife() - 1);
+                }
+            }
+            entitys.removeIf(stone -> bulletEntity.getBounds().rectangleIsInside(stone.getBounds()));
         }
     }
 
