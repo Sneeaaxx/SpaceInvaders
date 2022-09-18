@@ -35,39 +35,45 @@ public class Lobby extends GameState {
 
     @Override
     public void update(double dt) {
-        for (Button b : button) {
-            b.update(dt);
-        }
+        if (!gsm.isState(GameStateManager.OPTIONS)) {
+            for (Button b : button) {
+                b.update(dt);
+            }
 
-        if (button[0].getClicked()) {
-            gsm.addAndRemoveGameState(GameStateManager.PLAY, GameStateManager.LOBBY);
-        }
-        if (button[1].getClicked()) {
-            gsm.addAndRemoveGameState(GameStateManager.OPTIONS, GameStateManager.LOBBY);
-        }
-        if (button[2].getClicked()) {
-            gsm.addAndRemoveGameState(GameStateManager.HIGHSCORE, GameStateManager.LOBBY);
-        }
-        if (button[3].getClicked()) {
-            System.exit(0);
+            if (button[0].getClicked()) {
+                gsm.addAndRemoveGameState(GameStateManager.PLAY, GameStateManager.LOBBY);
+            }
+            if (button[1].getClicked()) {
+                gsm.addGameState(GameStateManager.OPTIONS);
+            }
+            if (button[2].getClicked()) {
+                gsm.addAndRemoveGameState(GameStateManager.HIGHSCORE, GameStateManager.LOBBY);
+            }
+            if (button[3].getClicked()) {
+                System.exit(0);
+            }
         }
     }
 
     @Override
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
-        for (Button b : button) {
-            b.inputs(keyH, mouseH);
+        if (!gsm.isState(GameStateManager.OPTIONS)) {
+            for (Button b : button) {
+                b.inputs(keyH, mouseH);
+            }
         }
     }
 
     @Override
     public void render(Graphics2D g2) {
-        g2.setFont(titleFont);
-        g2.setColor(new Color(213, 213, 213));
-        g2.drawString("SpaceInvaders", GameStateManager.getXForCenteredFrameText("SpaceInvaders", g2), 140);
+        if (!gsm.isState(GameStateManager.OPTIONS)) {
+            g2.setFont(titleFont);
+            g2.setColor(new Color(213, 213, 213));
+            g2.drawString("SpaceInvaders", GameStateManager.getXForCenteredFrameText("SpaceInvaders", g2), 140);
 
-        for (Button b : button) {
-            b.render(g2);
+            for (Button b : button) {
+                b.render(g2);
+            }
         }
     }
 }

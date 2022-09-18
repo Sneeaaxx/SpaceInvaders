@@ -1,6 +1,5 @@
 package main.states.states;
 
-import main.graphics.Image;
 import main.maths.Vector2f;
 import main.states.GameState;
 import main.states.GameStateManager;
@@ -28,33 +27,39 @@ public class Pause extends GameState {
 
     @Override
     public void update(double dt) {
-        for (Button b : button) {
-            b.update(dt);
-        }
+        if (!gsm.isState(GameStateManager.OPTIONS)) {
+            for (Button b : button) {
+                b.update(dt);
+            }
 
-        if (button[0].getClicked()) {
-            gsm.removeGameState(GameStateManager.PAUSE);
-        }
-        if (button[1].getClicked()) {
-            gsm.addGameState(GameStateManager.OPTIONS);
-        }
-        if (button[2].getClicked()) {
-            gsm.addAndRemoveGameState(GameStateManager.LOBBY, GameStateManager.PLAY);
-            gsm.removeGameState(GameStateManager.PAUSE);
+            if (button[0].getClicked()) {
+                gsm.removeGameState(GameStateManager.PAUSE);
+            }
+            if (button[1].getClicked()) {
+                gsm.addGameState(GameStateManager.OPTIONS);
+            }
+            if (button[2].getClicked()) {
+                gsm.addAndRemoveGameState(GameStateManager.LOBBY, GameStateManager.PLAY);
+                gsm.removeGameState(GameStateManager.PAUSE);
+            }
         }
     }
 
     @Override
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
-        for (Button b : button) {
-            b.inputs(keyH, mouseH);
+        if (!gsm.isState(GameStateManager.OPTIONS)) {
+            for (Button b : button) {
+                b.inputs(keyH, mouseH);
+            }
         }
     }
 
     @Override
     public void render(Graphics2D g2) {
-        for (Button b : button) {
-            b.render(g2);
+        if (!gsm.isState(GameStateManager.OPTIONS)) {
+            for (Button b : button) {
+                b.render(g2);
+            }
         }
     }
 }

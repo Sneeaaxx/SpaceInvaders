@@ -27,7 +27,7 @@ public class Options extends GameState {
     @Override
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
         if (keyH.escape.down) {
-            gsm.addAndRemoveGameState(GameStateManager.LOBBY, GameStateManager.OPTIONS);
+            gsm.removeGameState(GameStateManager.OPTIONS);
         }
     }
 

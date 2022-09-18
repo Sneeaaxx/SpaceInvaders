@@ -50,8 +50,8 @@ public class StoneManager extends EntityManager {
             spawnEntityRatioIncrease = false;
         } else if (dt > spawnEntityRatioIncreaseDuration + spawnEntityRatioIncreaseTime) {
             entitySpawnTimeRandomBorder -= 0.05E9;
-            if (entitySpawnTimeRandomBorder <= 0.5E9) {
-                entitySpawnTimeRandomBorder = 0.5E9;
+            if (entitySpawnTimeRandomBorder <= 0.4E9) {
+                entitySpawnTimeRandomBorder = 0.4E9;
             }
             System.out.println(entitySpawnTimeRandomBorder);
             spawnEntityRatioIncrease = true;
