@@ -77,14 +77,7 @@ public class Player extends GameObject {
     }
 
     public void render(Graphics2D g2) {
-        setAlpha(g2, invisAlpha);
         g2.setColor(Color.red);
         g2.drawRect((int) bounds.getX(), (int) bounds.getY(), (int) bounds.getWidth(), (int) bounds.getHeight());
-        setAlpha(g2, 1f);
-    }
-
-    private void setAlpha(Graphics2D g2, float v) {
-        AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, v);
-        g2.setComposite(alphaComposite);
     }
 }

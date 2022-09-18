@@ -48,6 +48,7 @@ public abstract class GameObject {
     public boolean getDead() { return dead; }
     public boolean getIsInvis() { return isInvis; }
     public int getLife() { return life; }
+    public float getInvisAlpha() { return invisAlpha; }
 
     public void update(double dt) {
         bounds.setX(vec.getX());

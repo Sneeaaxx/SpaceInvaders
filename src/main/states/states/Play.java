@@ -53,8 +53,20 @@ public class Play extends GameState {
 
     @Override
     public void render(Graphics2D g2) {
-        player.render(g2);
+        if (gsm.isState(GameStateManager.PAUSE) || gsm.isState(GameStateManager.OPTIONS) ) {
+            setAlpha(g2, 0.2f);
+        }
         bm.render(g2);
         sm.render(g2);
+
+        setAlpha(g2, player.getInvisAlpha());
+        player.render(g2);
+
+        setAlpha(g2, 1f);
+    }
+
+    private void setAlpha(Graphics2D g2, float v) {
+        AlphaComposite alphaComposite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, v);
+        g2.setComposite(alphaComposite);
     }
 }
