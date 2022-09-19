@@ -13,6 +13,10 @@ public abstract class GameState {
         this.gsm = gsm;
     }
 
+    public int getHighscore() {
+        return 0;
+    }
+
     public abstract void update(double dt);
     public abstract void inputs(KeyHandler keyH, MouseHandler mouseH);
     public abstract void render(Graphics2D g2);

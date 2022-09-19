@@ -1,5 +1,6 @@
 package main.states.states;
 
+import main.Panel;
 import main.entity.bullet.BulletManager;
 import main.entity.Player;
 import main.entity.stone.StoneManager;
@@ -18,14 +19,32 @@ public class Play extends GameState {
     private final StoneManager sm;
     private Font text;
 
+    private int highscore;
+    private double highscoreCounter;
+    private double highscoreTimer;
+    private boolean getNewHighscoreTimer;
+
     public Play(GameStateManager gsm) {
         super(gsm);
 
         player = new Player(new Vector2f(100, 100));
 
         bm = new BulletManager(player);
-        sm = new StoneManager(player, bm);
+        sm = new StoneManager(player, bm, this);
         text = new Font("MatchupPro", Font.PLAIN, 30);
+
+        highscore = 0;
+        highscoreCounter = 1E9;
+        getNewHighscoreTimer = true;
+    }
+
+    public void addHighscore(int i) {
+        this.highscore += i;
+    }
+
+    @Override
+    public int getHighscore() {
+        return highscore;
     }
 
     @Override
@@ -39,6 +58,16 @@ public class Play extends GameState {
 
             bm.update(dt);
             sm.update(dt);
+
+            if (getNewHighscoreTimer) {
+                highscoreTimer = dt;
+                getNewHighscoreTimer = false;
+            } else {
+                if (dt > highscoreTimer + highscoreCounter) {
+                    highscore++;
+                    getNewHighscoreTimer = true;
+                }
+            }
         }
     }
 
@@ -68,7 +97,9 @@ public class Play extends GameState {
 
         g2.setColor(new Color(213, 213, 213));;
         g2.setFont(text);
-        g2.drawString("Lifes: " + player.getLife(), 10, 30);
+        g2.drawString("Lifes: " + player.getLife(), 15, 30);
+
+        g2.drawString("Highscore: " + highscore, GameStateManager.getXForTextAlignToRight("Highscore: " + highscore, Panel.width, g2), 30);
     }
 
     private void setAlpha(Graphics2D g2, float v) {

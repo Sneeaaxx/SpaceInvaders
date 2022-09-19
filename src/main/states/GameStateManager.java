@@ -40,6 +40,7 @@ public class GameStateManager {
     public boolean isState(int i) {
         return gs[i] != null;
     }
+    public GameState getState(int i) { return gs[i]; }
 
     public void addAndRemoveGameState(int add, int remove) {
         addGameState(add);
@@ -133,6 +134,11 @@ public class GameStateManager {
     public static int getXForCenteredFrameText(String text, Graphics2D g2) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         return Panel.width / 2 - length / 2;
+    }
+
+    public static int getXForTextAlignToRight(String text, int width, Graphics2D g2) {
+        int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        return width - length - 20;
     }
 
     public static int getXForCenteredBoxText(String text, int width, Graphics2D g2) {

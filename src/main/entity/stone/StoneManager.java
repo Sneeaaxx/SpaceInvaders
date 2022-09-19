@@ -7,9 +7,11 @@ import main.entity.Player;
 import main.entity.bullet.BulletManager;
 import main.maths.AABB;
 import main.maths.Vector2f;
+import main.states.states.Play;
 
 public class StoneManager extends EntityManager {
 
+    private final Play play;
     private final BulletManager bm;
     private boolean spawnEntityRatioIncrease;
     private double spawnEntityRatioIncreaseTime;
@@ -17,10 +19,11 @@ public class StoneManager extends EntityManager {
     private double entitySpawnTimeRandomBorder;
     private int life = 1;
 
-    public StoneManager(Player player, BulletManager bm) {
+    public StoneManager(Player player, BulletManager bm, Play play) {
         super(player);
 
         this.bm = bm;
+        this.play = play;
 
         entitySpawnTimeRandomBorder = 1E9;
 
@@ -50,6 +53,7 @@ public class StoneManager extends EntityManager {
             for (GameObject stoneEntity : entitys) {
                 if (bulletEntity.getBounds().rectangleIsInside(stoneEntity.getBounds())) {
                     bulletEntity.setLife(bulletEntity.getLife() - 1);
+                    play.addHighscore(5);
                 }
             }
             entitys.removeIf(stone -> bulletEntity.getBounds().rectangleIsInside(stone.getBounds()));

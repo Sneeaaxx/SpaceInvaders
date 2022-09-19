@@ -16,6 +16,7 @@ public class Death extends GameState {
     private double alphaValueTimer;
     private double alphaValueCounter;
     private boolean updateAlphaValueTimer;
+    private int highscore;
 
     public Death(GameStateManager gsm) {
         super(gsm);
@@ -26,6 +27,8 @@ public class Death extends GameState {
 
         title = new Font("EquipmentPro", Font.PLAIN, 90);
         text = new Font("MatchupPro", Font.PLAIN, 30);
+
+        highscore = gsm.getState(GameStateManager.PLAY).getHighscore();
     }
 
     @Override
@@ -68,7 +71,7 @@ public class Death extends GameState {
         g2.drawString("You Are Dead", GameStateManager.getXForCenteredFrameText("You Are Dead", g2), 100);
 
         g2.setFont(text);
-        g2.drawString("Highscore: ", GameStateManager.getXForCenteredFrameText("Highscore: ", g2), 200);
+        g2.drawString("Highscore: " + highscore, GameStateManager.getXForCenteredFrameText("Highscore: " + highscore, g2), 200);
     }
 
     private void setAlpha(Graphics2D g2, float v) {

@@ -10,5 +10,4 @@ public class Launcher {
 // TODO: Highscore System
 // TODO: Options Key changer
 // TODO: Adding Pictures
-// TODO: Dead Screen
 
