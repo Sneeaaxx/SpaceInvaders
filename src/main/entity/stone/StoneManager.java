@@ -5,6 +5,7 @@ import main.entity.EntityManager;
 import main.entity.GameObject;
 import main.entity.Player;
 import main.entity.bullet.BulletManager;
+import main.maths.AABB;
 import main.maths.Vector2f;
 
 public class StoneManager extends EntityManager {
@@ -28,8 +29,21 @@ public class StoneManager extends EntityManager {
         entityDeleteBorder = Panel.height + 100;
     }
 
+    private int getRandom(int origin, int bounds) {
+        return random.nextInt(origin, bounds);
+    }
+
     public void addEntity() {
-        entitys.add(new Stone(new Vector2f(random.nextInt(10, Panel.width - 50), -100)));
+        int rnd = getRandom(0, Panel.width - 50);
+
+        for (int i = 0; i < entitys.size(); i++) {
+            if (entitys.get(i).getBounds().rectangleIsInside(new AABB(rnd, -100, 50, 50))) {
+                rnd = getRandom(0, Panel.width - 50);
+                i = 0;
+            }
+        }
+
+        entitys.add(new Stone(new Vector2f(rnd, -100)));
     }
     private void checkCollision() {
         for (GameObject bulletEntity : bm.getEntitys()) {
@@ -78,6 +92,9 @@ public class StoneManager extends EntityManager {
             if (player.getBounds().rectangleIsInside(entity.getBounds())) {
                 if (!player.getIsInvis()) {
                     player.setLife(player.getLife() - 1);
+                    if (player.getLife() <= 0) {
+                        player.setLife(0);
+                    }
                     player.setIsInvis(true);
                 }
             }
