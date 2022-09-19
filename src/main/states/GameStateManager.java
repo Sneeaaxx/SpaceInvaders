@@ -16,6 +16,7 @@ public class GameStateManager {
     public static final int OPTIONS = 4;
     public static final int HIGHSCORE = 2;
     public static final int PAUSE = 3;
+    public static final int DEATH = 5;
 
     public static FontF fontF;
 
@@ -85,6 +86,9 @@ public class GameStateManager {
             }
             case PAUSE -> {
                 gs[num] = new Pause(this);
+            }
+            case DEATH -> {
+                gs[num] = new Death(this);
             }
             default -> System.out.println("ERROR-GameStateManager: There is no GameState with this num: '" + num + "'");
         }

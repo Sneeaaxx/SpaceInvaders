@@ -30,11 +30,11 @@ public class Play extends GameState {
 
     @Override
     public void update(double dt) {
-        if (!gsm.isState(GameStateManager.PAUSE)) {
+        if (!gsm.isState(GameStateManager.PAUSE) && !gsm.isState(GameStateManager.DEATH)) {
             if (!player.getDead()) {
                 player.update(dt);
             } else {
-                gsm.addAndRemoveGameState(GameStateManager.LOBBY, GameStateManager.PLAY);
+                gsm.addGameState(GameStateManager.DEATH);
             }
 
             bm.update(dt);
@@ -44,7 +44,7 @@ public class Play extends GameState {
 
     @Override
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
-        if (!gsm.isState(GameStateManager.PAUSE)) {
+        if (!gsm.isState(GameStateManager.PAUSE) && !gsm.isState(GameStateManager.DEATH)) {
             if (keyH.escape.down) {
                 gsm.addGameState(GameStateManager.PAUSE);
             }
