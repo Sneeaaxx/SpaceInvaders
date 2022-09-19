@@ -13,9 +13,10 @@ import java.awt.*;
 
 public class Play extends GameState {
 
-    private Player player;
+    private final Player player;
     private final BulletManager bm;
-    private StoneManager sm;
+    private final StoneManager sm;
+    private Font text;
 
     public Play(GameStateManager gsm) {
         super(gsm);
@@ -24,6 +25,7 @@ public class Play extends GameState {
 
         bm = new BulletManager(player);
         sm = new StoneManager(player, bm);
+        text = new Font("MatchupPro", Font.PLAIN, 30);
     }
 
     @Override
@@ -63,6 +65,10 @@ public class Play extends GameState {
         player.render(g2);
 
         setAlpha(g2, 1f);
+
+        g2.setColor(new Color(213, 213, 213));;
+        g2.setFont(text);
+        g2.drawString("Lifes: " + player.getLife(), 10, 30);
     }
 
     private void setAlpha(Graphics2D g2, float v) {
