@@ -53,7 +53,7 @@ public class StoneManager extends EntityManager {
             for (GameObject stoneEntity : entitys) {
                 if (bulletEntity.getBounds().rectangleIsInside(stoneEntity.getBounds())) {
                     bulletEntity.setLife(bulletEntity.getLife() - 1);
-                    play.addHighscore(5);
+                    play.addToHighscore(5);
                 }
             }
             entitys.removeIf(stone -> bulletEntity.getBounds().rectangleIsInside(stone.getBounds()));

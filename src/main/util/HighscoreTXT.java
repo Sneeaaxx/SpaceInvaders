@@ -1,73 +1,66 @@
 package main.util;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.ArrayList;
 
 public class HighscoreTXT {
 
-    private File datei;
-    private Scanner scan;
-    private String[] highscores;
+    private String path;
+    private BufferedReader reader;
+    private BufferedWriter writer;
+    private String[] hs;
 
     public HighscoreTXT(String path) {
-        highscores = new String[10];
+        this.path = path;
 
-        laden(path);
+        hs = new String[100];
+
+        read();
     }
 
-    private void laden(String path) {
-        datei = new File(path);
+    public String[] getHihscoreList() {
+        return hs;
+    }
 
-        if (!datei.isFile()) {
-            System.out.println("ERROR-HighscoreTXT: Couldn't load file '" + path + "'");
-        }
-
-        scan = null;
+    public void read() {
         try {
-            scan = new Scanner(datei);
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR-HighscoreTXT: Couldn't load scanner");
-        }
-    }
+            reader = new BufferedReader(new FileReader(path));
 
-    public void lesen() {
-        for (int i = 0; i < 10; i++) {
-            assert scan != null;
-
-            if (scan.hasNext()) {
-                highscores[i] = scan.nextLine();
-            }
-        }
-    }
-
-    public void highscoreHinzufuegen(String highscore) {
-        
-        if (highscores[0] == null) {
-            highscores[0] = highscore;
-            return;
-        }
-
-        String space = null;
-
-        for (int i = 0; i < highscores.length; i++) {
-            if (highscores[i] != null) {
-                if (Integer.parseInt(highscores[i].substring(highscores[i].indexOf(" ") + 1)) < Integer.parseInt(highscore.substring(highscore.indexOf(" ") + 1))) {
-                    space = highscores[i];
-                    highscores[i] = highscore;
-                    highscore = space;
-
+            for (int i = 0; i < hs.length; i++) {
+                if (!reader.equals("")) {
+                    hs[i] = reader.readLine();
                 }
-            } else {
-                highscores[i] = highscore;
-                return;
+            }
+
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("ERROR-HighscoreTXT: Couldn't load reader");
+        }
+    }
+
+    public void addHighScore(String highscore) {
+        for (int i = 0; i < hs.length; i++) {
+            if (hs[i] == null) {
+                hs[i] = highscore;
+                break;
             }
         }
     }
 
-    public String[] getHighscores() {
-        return highscores;
+    public void write() {
+        try {
+            writer = new BufferedWriter(new FileWriter(path));
+
+            for (String h : hs) {
+                if (h != null) {
+                    writer.write(h);
+                    writer.newLine();
+                }
+            }
+
+            writer.close();
+        } catch(IOException e) {
+            System.out.println("ERROR-HighscoreTXT: writer couldn't load");
+        }
     }
 }

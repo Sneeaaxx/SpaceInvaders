@@ -13,12 +13,15 @@ public class Highscore extends GameState {
 
     private Font title;
     private Font text;
+    private String[] hsL;
 
     public Highscore(GameStateManager gsm) {
         super(gsm);
 
         title = new Font("EquipmentPro", Font.PLAIN, 90);
         text = new Font("MatchupPro", Font.PLAIN, 20);
+
+        hsL = new String[100];
     }
 
     @Override

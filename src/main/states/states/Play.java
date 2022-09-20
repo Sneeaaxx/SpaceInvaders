@@ -7,6 +7,7 @@ import main.entity.stone.StoneManager;
 import main.maths.Vector2f;
 import main.states.GameState;
 import main.states.GameStateManager;
+import main.util.HighscoreTXT;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
@@ -38,7 +39,7 @@ public class Play extends GameState {
         getNewHighscoreTimer = true;
     }
 
-    public void addHighscore(int i) {
+    public void addToHighscore(int i) {
         this.highscore += i;
     }
 

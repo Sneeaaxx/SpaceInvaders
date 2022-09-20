@@ -14,9 +14,9 @@ public class Death extends GameState {
     private final Font text;
     private float alphaValue;
     private double alphaValueTimer;
-    private double alphaValueCounter;
+    private final double alphaValueCounter;
     private boolean updateAlphaValueTimer;
-    private int highscore;
+    private final int highscore;
 
     public Death(GameStateManager gsm) {
         super(gsm);
@@ -26,7 +26,7 @@ public class Death extends GameState {
         updateAlphaValueTimer = true;
 
         title = new Font("EquipmentPro", Font.PLAIN, 90);
-        text = new Font("MatchupPro", Font.PLAIN, 30);
+        text = new Font("MatchupPro", Font.PLAIN, 40);
 
         highscore = gsm.getState(GameStateManager.PLAY).getHighscore();
     }
