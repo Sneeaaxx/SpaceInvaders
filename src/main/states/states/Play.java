@@ -7,7 +7,6 @@ import main.entity.stone.StoneManager;
 import main.maths.Vector2f;
 import main.states.GameState;
 import main.states.GameStateManager;
-import main.util.HighscoreTXT;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 

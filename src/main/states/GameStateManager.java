@@ -3,6 +3,7 @@ package main.states;
 import main.Panel;
 import main.graphics.FontF;
 import main.states.states.*;
+import main.util.HighscoreTXT;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 
@@ -19,6 +20,7 @@ public class GameStateManager {
     public static final int DEATH = 5;
 
     public static FontF fontF;
+    public HighscoreTXT htxt;
 
     private static boolean showBounds;
 
@@ -33,6 +35,8 @@ public class GameStateManager {
         fontF.loadFont("fonts/CompassPro.ttf", "CompassPro");
         fontF.loadFont("fonts/FutilePro.ttf", "FutilePro");
         fontF.loadFont("fonts/MatchupPro.ttf", "MatchupPro");
+
+        htxt = new HighscoreTXT("res/text/high-score.txt");
 
         addGameState(LOBBY);
     }
