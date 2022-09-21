@@ -1,8 +1,11 @@
 package main.states.states;
 
 import main.Panel;
+import main.graphics.Image;
+import main.maths.Vector2f;
 import main.states.GameState;
 import main.states.GameStateManager;
+import main.ui.Button;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
 import main.util.StringInputBuilder;
@@ -19,6 +22,8 @@ public class Death extends GameState {
     private final double alphaValueCounter;
     private boolean updateAlphaValueTimer;
     private final int highscore;
+    private Button mainMenu;
+    private Button submitHighscore;
 
     public Death(GameStateManager gsm) {
         super(gsm);
@@ -32,6 +37,9 @@ public class Death extends GameState {
 
         highscore = gsm.getState(GameStateManager.PLAY).getHighscore();
         sib = new StringInputBuilder();
+
+        mainMenu = new Button(new Image("ui/GrayLargeButton6.png"), new Vector2f(100,570), "Main Menu");
+        submitHighscore = new Button(new Image("ui/GrayLargeButton6.png"), new Vector2f(400,570), "Add Highscore");
     }
 
     @Override
@@ -51,6 +59,14 @@ public class Death extends GameState {
             }
         }
 
+        mainMenu.update(dt);
+        submitHighscore.update(dt);
+
+        if (mainMenu.getClicked()) {
+            if (gsm.isState(GameStateManager.PLAY)) gsm.removeGameState(GameStateManager.PLAY);
+            gsm.addAndRemoveGameState(GameStateManager.LOBBY, GameStateManager.DEATH);
+        }
+
         if (alphaValue == 1f && gsm.isState(GameStateManager.PLAY)) {
             gsm.removeGameState(GameStateManager.PLAY);
         }
@@ -59,6 +75,9 @@ public class Death extends GameState {
     @Override
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
         sib.inputs(keyH, mouseH);
+
+        mainMenu.inputs(keyH, mouseH);
+        submitHighscore.inputs(keyH, mouseH);
     }
 
     @Override
@@ -79,8 +98,11 @@ public class Death extends GameState {
         g2.drawString("Enter You'r Name", GameStateManager.getXForCenteredFrameText("Enter You'r Name", g2), 300);
 
         if (sib.getFinalString() != null) {
-            g2.drawString(sib.getFinalString(), GameStateManager.getXForCenteredFrameText(sib.getFinalString(), g2), 400);
+            g2.drawString(sib.getFinalString(), GameStateManager.getXForCenteredFrameText(sib.getFinalString(), g2), 450);
         }
+
+        mainMenu.render(g2);
+        submitHighscore.render(g2);
     }
 
     private void setAlpha(Graphics2D g2, float v) {

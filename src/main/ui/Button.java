@@ -27,6 +27,10 @@ public class Button {
     private int isInsideYTextFactor;
 
     private boolean isClicked;
+    private boolean getClickTimer;
+    private double clickTimer;
+    private double clickCooldown;
+    private boolean mouseOnePressed;
 
     private boolean setCenter;
 
@@ -40,6 +44,9 @@ public class Button {
         bounds = new AABB((int) vec.getX(), (int) vec.getY(), this.width, this.height);
 
         buttonFont = new Font("MatchupPro", Font.PLAIN, 25);
+
+        getClickTimer = true;
+        clickCooldown = 5E8;
     }
 
     public void setCenter(boolean setCenter) {
@@ -57,6 +64,13 @@ public class Button {
             setCenter = false;
         }
 
+        if (getClickTimer) {
+            clickTimer = dt;
+            getClickTimer = false;
+        }
+
+        isClicked = dt > clickTimer + clickCooldown && isInside && mouseOnePressed;
+
         if (isInside) {
             isInsideYFactor = height;
             isInsideYTextFactor = 40;
@@ -68,8 +82,7 @@ public class Button {
 
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
         isInside = bounds.mouseIsInside(mouseH.getX(), mouseH.getY());
-
-        isClicked = isInside && mouseH.getButton() == 1;
+        mouseOnePressed = mouseH.getButton() == 1;
     }
 
     public void render(Graphics2D g2) {
