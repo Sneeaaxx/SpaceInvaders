@@ -7,6 +7,8 @@ public class Launcher {
     }
 }
 
+// TODO: Different Sizes of Stones
+// TODO: Different lifes for stones
 // TODO: Options Key changer
 // TODO: Adding Pictures
 

@@ -37,16 +37,17 @@ public class StoneManager extends EntityManager {
     }
 
     public void addEntity() {
-        int rnd = getRandom(0, Panel.width - 50);
+        int rndX = getRandom(0, Panel.width - 50);
+        int rndSize = getRandom(30, 80);
 
         for (int i = 0; i < entitys.size(); i++) {
-            if (entitys.get(i).getBounds().rectangleIsInside(new AABB(rnd, -100, 50, 50))) {
-                rnd = getRandom(0, Panel.width - 50);
+            if (entitys.get(i).getBounds().rectangleIsInside(new AABB(rndX, -100, rndSize, rndSize))) {
+                rndX = getRandom(0, Panel.width - 50);
                 i = 0;
             }
         }
 
-        entitys.add(new Stone(new Vector2f(rnd, -100)));
+        entitys.add(new Stone(new Vector2f(rndX, -100), rndSize));
     }
     private void checkCollision() {
         for (GameObject bulletEntity : bm.getEntitys()) {
@@ -91,7 +92,6 @@ public class StoneManager extends EntityManager {
             }
         }
 
-        boolean gotHit = false;
         for (GameObject entity : entitys) {
             if (player.getBounds().rectangleIsInside(entity.getBounds())) {
                 if (!player.getIsInvis()) {

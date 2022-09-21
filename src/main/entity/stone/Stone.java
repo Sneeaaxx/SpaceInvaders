@@ -7,12 +7,16 @@ import main.util.KeyHandler;
 import main.util.MouseHandler;
 
 public class Stone extends GameObject {
-    public Stone(Vector2f vec) {
+
+    private int size;
+    public Stone(Vector2f vec, int size) {
         super(vec);
 
-        this.dy = 3.5f;
+        this.size = size;
 
-        bounds = new AABB(vec.getX(), vec.getY(), 50, 50);
+        this.dy = 3f;
+
+        bounds = new AABB(vec.getX(), vec.getY(), size, size);
     }
 
     @Override
