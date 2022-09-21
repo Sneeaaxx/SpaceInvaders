@@ -5,6 +5,7 @@ import main.states.GameState;
 import main.states.GameStateManager;
 import main.util.KeyHandler;
 import main.util.MouseHandler;
+import main.util.StringInputBuilder;
 
 import java.awt.*;
 
@@ -12,6 +13,7 @@ public class Death extends GameState {
 
     private final Font title;
     private final Font text;
+    private StringInputBuilder sib;
     private float alphaValue;
     private double alphaValueTimer;
     private final double alphaValueCounter;
@@ -29,6 +31,7 @@ public class Death extends GameState {
         text = new Font("MatchupPro", Font.PLAIN, 40);
 
         highscore = gsm.getState(GameStateManager.PLAY).getHighscore();
+        sib = new StringInputBuilder();
     }
 
     @Override
@@ -55,7 +58,7 @@ public class Death extends GameState {
 
     @Override
     public void inputs(KeyHandler keyH, MouseHandler mouseH) {
-
+        sib.inputs(keyH, mouseH);
     }
 
     @Override
@@ -72,6 +75,12 @@ public class Death extends GameState {
 
         g2.setFont(text);
         g2.drawString("Highscore: " + highscore, GameStateManager.getXForCenteredFrameText("Highscore: " + highscore, g2), 200);
+
+        g2.drawString("Enter You'r Name", GameStateManager.getXForCenteredFrameText("Enter You'r Name", g2), 300);
+
+        if (sib.getFinalString() != null) {
+            g2.drawString(sib.getFinalString(), GameStateManager.getXForCenteredFrameText(sib.getFinalString(), g2), 400);
+        }
     }
 
     private void setAlpha(Graphics2D g2, float v) {

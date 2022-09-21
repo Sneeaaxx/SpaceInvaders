@@ -69,6 +69,7 @@ public class KeyHandler implements KeyListener {
 
     public Key escape = new Key();
     public Key space = new Key();
+    public Key backspace = new Key();
     public Key F1 = new Key();
 
     public KeyHandler(Panel game) {
@@ -117,6 +118,7 @@ public class KeyHandler implements KeyListener {
 
         if(event.getKeyCode() == KeyEvent.VK_ESCAPE) escape.toggle(pressed);
         if(event.getKeyCode() == KeyEvent.VK_SPACE) space.toggle(pressed);
+        if(event.getKeyCode() == KeyEvent.VK_BACK_SPACE) backspace.toggle(pressed);
         if(event.getKeyCode() == KeyEvent.VK_F1) F1.toggle(pressed);
     }
 

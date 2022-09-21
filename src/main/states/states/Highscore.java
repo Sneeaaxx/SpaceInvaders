@@ -45,7 +45,7 @@ public class Highscore extends GameState {
         g2.setFont(text);
         for (int i = 0; i < htxtList.length; i++) {
             if (htxtList[i] != null) {
-                g2.drawString(i + ". " + htxtList[i].substring(0, htxtList[i].indexOf(" ")), 100, 200 + i * 50);
+                g2.drawString((i + 1) + ". " + htxtList[i].substring(0, htxtList[i].indexOf(" ")), 100, 200 + i * 50);
                 String text = htxtList[i].substring(htxtList[i].indexOf(" "));
                 g2.drawString(text, GameStateManager.getXForTextAlignToRight(text, Panel.width - 100, g2), 200 + i * 50);
             }
