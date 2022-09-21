@@ -24,6 +24,7 @@ public class Death extends GameState {
     private final int highscore;
     private Button mainMenu;
     private Button submitHighscore;
+    private boolean addedHighscore;
 
     public Death(GameStateManager gsm) {
         super(gsm);
@@ -65,6 +66,11 @@ public class Death extends GameState {
         if (mainMenu.getClicked()) {
             if (gsm.isState(GameStateManager.PLAY)) gsm.removeGameState(GameStateManager.PLAY);
             gsm.addAndRemoveGameState(GameStateManager.LOBBY, GameStateManager.DEATH);
+        }
+        if (submitHighscore.getClicked() && !addedHighscore) {
+            gsm.htxt.addHighScore(sib.getFinalString() + " " + highscore);
+            gsm.htxt.write();
+            addedHighscore = true;
         }
 
         if (alphaValue == 1f && gsm.isState(GameStateManager.PLAY)) {

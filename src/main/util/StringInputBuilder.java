@@ -108,6 +108,9 @@ public class StringInputBuilder {
                 if (keyH.z.clicked) {
                     finalString = finalString + "Z";
                 }
+                if (keyH.space.clicked) {
+                    finalString = finalString + " ";
+                }
             } else {
                 if (keyH.a.clicked) {
                     finalString = finalString + "a";
@@ -186,6 +189,9 @@ public class StringInputBuilder {
                 }
                 if (keyH.z.clicked) {
                     finalString = finalString + "z";
+                }
+                if (keyH.space.clicked) {
+                    finalString = finalString + " ";
                 }
             }
         }

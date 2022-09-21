@@ -26,6 +26,7 @@ public class Highscore extends GameState {
 
     @Override
     public void update(double dt) {
+        gsm.htxt.sort();
         htxtList = gsm.htxt.getHihscoreList();
     }
 
@@ -43,7 +44,7 @@ public class Highscore extends GameState {
         g2.drawString("Highscore", GameStateManager.getXForCenteredFrameText("Highscore", g2), 100);
 
         g2.setFont(text);
-        for (int i = 0; i < htxtList.length; i++) {
+        for (int i = 0; i < 10; i++) {
             if (htxtList[i] != null) {
                 g2.drawString((i + 1) + ". " + htxtList[i].substring(0, htxtList[i].indexOf(" ")), 100, 200 + i * 50);
                 String text = htxtList[i].substring(htxtList[i].indexOf(" "));
