@@ -71,6 +71,8 @@ public class Death extends GameState {
             gsm.htxt.addHighScore(sib.getFinalString() + " " + highscore);
             gsm.htxt.write();
             addedHighscore = true;
+            if (gsm.isState(GameStateManager.PLAY)) gsm.removeGameState(GameStateManager.PLAY);
+            gsm.addAndRemoveGameState(GameStateManager.LOBBY, GameStateManager.DEATH);
         }
 
         if (alphaValue == 1f && gsm.isState(GameStateManager.PLAY)) {
